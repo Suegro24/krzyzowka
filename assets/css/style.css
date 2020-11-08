@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.header--container {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; }
+  .header--container .logo-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%; }
+
+.background-image {
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100vw;
+  height: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; }
+
+.instruction--container {
+  position: relative;
+  width: 60%;
+  height: 50vh;
+  margin: 120px auto 0 auto;
+  font-size: 1.8rem;
+  transition: opacity 1s;
+  z-index: 2; }
+  .instruction--container .button--continue {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    animation: changing-colors-text 10s infinite; }
+
+.crossword--container {
+  opacity: 0;
+  display: none;
+  transition: opacity 1s;
+  margin-top: 200px; }
+  .crossword--container .crossword {
+    position: relative;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%); }
+    .crossword--container .crossword .answer {
+      display: flex;
+      margin: 1px; }
+      .crossword--container .crossword .answer .letter, .crossword--container .crossword .answer .main-letter, .crossword--container .crossword .answer .space {
+        width: 30px;
+        height: 30px;
+        font-size: 2rem;
+        text-align: center;
+        text-transform: uppercase;
+        border: 2px solid black;
+        border-radius: 4px;
+        padding: 0;
+        margin: 0 1px; }
+      .crossword--container .crossword .answer .main-letter {
+        border: 3px solid red; }
+      .crossword--container .crossword .answer .space {
+        background: gray; }
+
+.questions--container {
+  margin: 60px 0 150px 0; }
+
+.button--finish {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  transform: translate(-50%, -50%);
+  cursor: pointer; }
+
+.footer--container {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: 2; }
+  .footer--container .footer--container__small {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto; }
+
+@keyframes changing-colors-text {
+  0% {
+    color: black; }
+  20% {
+    color: blue; }
+  40% {
+    color: red; }
+  60% {
+    color: green; }
+  80% {
+    color: burlywood; }
+  100% {
+    color: black; } }
