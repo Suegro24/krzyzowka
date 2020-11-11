@@ -2,6 +2,7 @@ const continueButton = document.querySelector('#continueButton');
 const finishButton = document.querySelector('#buttonFinish');
 const crossword = document.querySelector('#crossword');
 const questions = document.querySelector('#questions');
+const modal = document.querySelector('#crosswordCompletedModal');
 let choosenPassword;
 
 const passwords = [
@@ -10,65 +11,69 @@ const passwords = [
         questions: [
             {
                 question: 'Projekt Niezależnego Zrzeszenia Studentów pomagający w kształtowaniu przyszłości studentów',
-                hint: '',
+                hint: 'https://www.facebook.com/DK.Kraj',
                 answer: 'Drogowskazy kariery',
                 mainLetter: 'w'
             },
             {
                 question: 'Imię przewodniczącego/przewodniczącej Niezależnego Zrzeszenia Studentów Uniwersytetu Rzeszowskiego',
-                hint: '',
+                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/3038036589599458',
                 answer: 'Ewelina',
                 mainLetter: 'a'
             },
             {
                 question: 'Osoba, która nie została jeszcze członkiem, ale pomaga organizacji i chcę się do niej przyłączyć',
-                hint: '',
+                hint: 'http://nzs.org.pl/kim-jestesmy/',
                 answer: 'Sympatyk',
                 mainLetter: 'm'
             },
             {
                 question: 'Wiceprzewodniczący ds. ... - odpowiada m. in. za promowanie wydarzeń oraz przygotowanie oprawy wizualnej',
-                hint: '',
+                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/3038036589599458',
                 answer: 'Promocji',
                 mainLetter: 'p'
             },
             {
                 question: 'Nazwa domu studenta w którym siedzibę ma NZS UR',
-                hint: '',
+                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/about/?ref=page_internal',
                 answer: 'Hilton',
                 mainLetter: 'i'
             },
             {
                 question: 'Wydarzenie NZS UR, w którym można posłuchać rozmowy z ciekawymi osobami zza granicy',
-                hint: '',
+                hint: 'https://www.facebook.com/hashtag/nzsbezgranic',
                 answer: 'NZS bez granic',
                 mainLetter: 'r'
             },
             {
                 question: 'Nazwa radia w którym można słuchać audycji NZS UR',
-                hint: '',
+                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/2804590669610719',
                 answer: 'Feniks',
                 mainLetter: 'i'
             },
             {
                 question: 'Nazwisko obecnego przewodniczącego/przewodniczącej ogólnokrajowego Niezależnego Zrzeszenia Studentów',
-                hint: '',
+                hint: 'http://nzs.org.pl/zarzad-krajowy/',
                 answer: 'Białas',
                 mainLetter: 'a'
             },
             {
                 question: 'Akcja Niezależnego Zrzeszenia Studentów, którego celem jest wyróżnienie studentów o wybitnych osiągnięciach',
-                hint: '',
+                hint: 'http://nzs.org.pl/studencki-nobel/',
                 answer: 'Studencki Nobel',
                 mainLetter: 'd'
             },
             {
                 question: 'Były członek organizacji',
-                hint: '',
+                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/2792610390808747',
                 answer: 'Alumn',
                 mainLetter: 'a'
             }
-        ]
+        ],
+        passwordCompleted: {
+            description: 'Wampiriada to cykliczny projekt Niezależnego Zrzeszenia Studentów, promujący bezinteresowne pomaganie innym poprzez oddawanie krwi, zapisy do bazy potencjalnych dawców szpiku oraz szerzenie idei ratowania życia. Działamy w myśl zasady: „1 donacja = 3 życia!”.',
+            link: 'https://www.facebook.com/WampiriadaRzeszow'
+        }
     }
 ]
 
@@ -79,11 +84,11 @@ continueButton.addEventListener('click', () => {
     instructionSection.style.opacity = '0';
     setTimeout(() => {
         instructionSection.style.display = 'none';
-        crosswordSection.style.display = 'block';
+        crosswordSection.style.display = 'flex';
     },1000)
     setTimeout(() => {
         crosswordSection.style.opacity = '1';
-        // newGame();
+        newGame();
     },2000)
 })
 
@@ -95,6 +100,7 @@ function newGame() {
     choosenPassword = 0;
     prepareCrossword(choosenPassword);
     prepareQuestions(choosenPassword);
+    prepereCompleteModal(choosenPassword);
 }
 
 function checkFinish() {
@@ -105,7 +111,7 @@ function checkFinish() {
     })
 
     if (passwords[choosenPassword].password.toLowerCase() === result) {
-        alert('Wygrana!');
+        modal.style.display="block"
     }
     else {
         alert('Próbuj dalej!');
@@ -117,10 +123,10 @@ function prepareCrossword(password) {
     let positionOfFirstAnswerMainLetter;
     let index = 0;
     for (let answer of passwords[password].questions) {
-        //console.log(answer);
         crosswordContent =
         `
             <div class="answer answer${index}">
+            <p class="index">${index+1}.</p>
         `
 
         let isMainCharacterSet = false;
@@ -165,6 +171,16 @@ function prepareCrossword(password) {
         div.style.marginLeft = marginLeft+'px';
         index++;
     }
+
+    let answersIndex = crossword.querySelectorAll('.index');
+    answersIndex.forEach(index => {
+        if (index.innerHTML.slice(0, -1) < 10) {
+            index.style.left="-25px";
+        }
+        else {
+            index.style.left="-40px";
+        }
+    })
 
     const letters = crossword.querySelectorAll('.letter');
     letters.forEach(letter => {
@@ -211,7 +227,7 @@ function prepareQuestions(password) {
 
     for (let question of passwords[password].questions) {
         questionsContent += `
-            <li>${question.question}</li>
+            <li>${question.question} <a class="hint" target="_blank" href="${question.hint}">[?]</a></li>
         `
     }
 
@@ -221,11 +237,42 @@ function prepareQuestions(password) {
     questions.innerHTML = questionsContent;
 }
 
+function prepereCompleteModal(password) {
+    const crosswordChoosenPassword = passwords[password];
+    let modalContent = '';
+    modalContent = `
+        <div class="modal-header">
+            <p class="modal-title">Gratulację udało Ci się odgadnąć hasło!</p>
+            <p class="modal-title-password">${crosswordChoosenPassword.password} </p>
+        </div>
+        <div class="modal-content">
+            <p class="description">${crosswordChoosenPassword.passwordCompleted.description}</p>
+            <p>Wiecej informacji znajdziesz <a href="${crosswordChoosenPassword.passwordCompleted.link}" target="_blank">tutaj</a></p>
+        </div>
+        <div class="modal-footer">
+            <button id="buttonCloseModal" class="btn button--close close">
+                <svg>
+                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                </svg>
+                Zamknij
+            </button>
+        </div>
+    `
+
+    const modal = document.querySelector('#crosswordCompletedModal');
+    modal.innerHTML = modalContent;
+
+    const closeButtons = modal.querySelectorAll('.close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.style.display="none";
+        })
+    })
+}
+
 function calculatePosition(positionA, positionB) {  
     const inputWidth = 36;
     let diffrence = positionA - positionB;
     let result = diffrence * inputWidth;
     return result;
 }
-
-newGame();

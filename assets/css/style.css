@@ -2,109 +2,266 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+  body p {
+    margin: 0; }
 
-.header--container {
-  position: fixed;
-  background-color: white;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px; }
-  .header--container .logo-image {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%; }
-
-.background-image {
-  background-image: url("../images/background.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  width: 100vw;
-  height: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1; }
-
-.instruction--container {
+.btn {
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 0 2em;
+  max-width: 160px;
   position: relative;
-  width: 60%;
-  height: 50vh;
-  margin: 120px auto 0 auto;
-  font-size: 1.8rem;
-  transition: opacity 1s;
-  z-index: 2; }
-  .instruction--container .button--continue {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    cursor: pointer;
-    animation: changing-colors-text 10s infinite; }
-
-.crossword--container {
-  opacity: 0;
-  display: none;
-  transition: opacity 1s;
-  margin-top: 200px; }
-  .crossword--container .crossword {
-    position: relative;
-    width: 50%;
-    left: 50%;
-    transform: translateX(-50%); }
-    .crossword--container .crossword .answer {
-      display: flex;
-      margin: 1px; }
-      .crossword--container .crossword .answer .letter, .crossword--container .crossword .answer .main-letter, .crossword--container .crossword .answer .space {
-        width: 30px;
-        height: 30px;
-        font-size: 2rem;
-        text-align: center;
-        text-transform: uppercase;
-        border: 2px solid black;
-        border-radius: 4px;
-        padding: 0;
-        margin: 0 1px; }
-      .crossword--container .crossword .answer .main-letter {
-        border: 3px solid red; }
-      .crossword--container .crossword .answer .space {
-        background: gray; }
-
-.questions--container {
-  margin: 60px 0 150px 0; }
-
-.button--finish {
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  transform: translate(-50%, -50%);
-  cursor: pointer; }
-
-.footer--container {
+  text-decoration: none;
+  text-transform: uppercase;
   width: 100%;
-  height: 50px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background: white;
-  z-index: 2; }
-  .footer--container .footer--container__small {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin: 0 auto; }
+  background: #e2dfdf;
+  font-weight: 100;
+  border: none;
+  transition-duration: .6s;
+  transition-timing-function: ease; }
+  .btn svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+  .btn rect {
+    fill: none;
+    stroke: #3700B3;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear; }
+  .btn:focus {
+    outline: none; }
+  .btn:hover {
+    background: rgba(230, 227, 227, 0);
+    font-weight: 700;
+    letter-spacing: 1px; }
+    .btn:hover rect {
+      stroke-width: 5;
+      stroke-dasharray: 15, 310;
+      stroke-dashoffset: 48;
+      transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1); }
 
-@keyframes changing-colors-text {
+.container {
+  background: linear-gradient(-45deg, #6200EE, #3700B3);
+  background-size: 200%, 200%;
+  animation: gradient 10s ease infinite;
+  overflow-x: hidden; }
+  .container .header--container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1000; }
+    .container .header--container .logo-image {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      height: 100%;
+      background: #e6e3e3;
+      padding: 10px;
+      border: 3px solid black;
+      border-radius: 5px; }
+  .container .instruction--container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    transition: opacity 1s; }
+    .container .instruction--container .information {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      padding: 20px;
+      font-size: 1.8rem;
+      -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+      box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+      text-align: center;
+      background-color: #e6e3e3;
+      z-index: 2; }
+      @media (max-width: 700px) {
+        .container .instruction--container .information {
+          top: 65%;
+          margin-bottom: 200px; } }
+      .container .instruction--container .information .instruction--text {
+        font-size: 1.4rem;
+        margin-top: 20px;
+        margin-bottom: 20px; }
+      .container .instruction--container .information .button--continue {
+        border: none;
+        background-color: #e6e3e3;
+        padding: 10px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        cursor: pointer; }
+  .container .crossword--container {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    opacity: 0;
+    display: none;
+    transition: opacity 1s;
+    flex-direction: column;
+    align-items: center; }
+    .container .crossword--container .crossword {
+      padding: 200px; }
+      @media (max-width: 1200px) {
+        .container .crossword--container .crossword {
+          padding: 200px 0;
+          margin: 0 auto; } }
+      .container .crossword--container .crossword .answer {
+        position: relative;
+        display: flex;
+        margin: 1px; }
+        @media (max-width: 880px) {
+          .container .crossword--container .crossword .answer {
+            margin: 0 !important; } }
+        .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
+          width: 30px;
+          height: 30px;
+          font-size: 2rem;
+          text-align: center;
+          text-transform: uppercase;
+          border: 2px solid black;
+          border-radius: 4px;
+          padding: 0;
+          margin: 0 1px; }
+          @media (max-width: 880px) {
+            .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
+              width: 20px;
+              height: 20px; } }
+          @media (max-width: 550px) {
+            .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
+              width: 15px;
+              height: 15px; } }
+        .container .crossword--container .crossword .answer .index {
+          position: absolute;
+          left: -25px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: white;
+          font-size: 1.875rem; }
+          @media (max-width: 550px) {
+            .container .crossword--container .crossword .answer .index {
+              font-size: 1rem; } }
+        .container .crossword--container .crossword .answer .main-letter {
+          border: 3px solid red; }
+        .container .crossword--container .crossword .answer .space {
+          background: gray; }
+    .container .crossword--container .button--finish {
+      position: absolute;
+      top: 50%;
+      right: 50px;
+      transform: translate(-50%, -50%);
+      border: none;
+      background: #e6e3e3; }
+      @media (max-width: 700px) {
+        .container .crossword--container .button--finish {
+          right: 10px;
+          top: 500px; } }
+      .container .crossword--container .button--finish svg {
+        height: 46.5px; }
+  .container .questions--container {
+    margin: 60px 0 60px 0;
+    background: #e6e3e3;
+    padding: 20px;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    border-radius: 3px; }
+    .container .questions--container ol li {
+      position: relative; }
+    .container .questions--container .hint {
+      position: absolute;
+      left: -50px;
+      top: 0;
+      color: blue;
+      cursor: pointer; }
+  .container .crossword-completed-modal {
+    display: none;
+    z-index: 1001;
+    width: 50vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e6e3e3;
+    border-radius: 10px;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0); }
+    @media (max-width: 700px) {
+      .container .crossword-completed-modal {
+        width: 99%; } }
+    .container .crossword-completed-modal .modal-header {
+      background: #05d817;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px; }
+      .container .crossword-completed-modal .modal-header .close {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        cursor: pointer;
+        font-size: 2rem; }
+      .container .crossword-completed-modal .modal-header .modal-title {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 1.5rem; }
+      .container .crossword-completed-modal .modal-header .modal-title-password {
+        text-align: center;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 2rem;
+        padding: 30px 0; }
+    .container .crossword-completed-modal .modal-content {
+      padding: 20px;
+      font-size: 1.125rem;
+      text-align: justify; }
+      .container .crossword-completed-modal .modal-content .description {
+        margin-bottom: 20px; }
+      .container .crossword-completed-modal .modal-content a {
+        text-decoration: none; }
+    .container .crossword-completed-modal .modal-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .container .crossword-completed-modal .modal-footer .button--close {
+        background-color: #e6e3e3; }
+        .container .crossword-completed-modal .modal-footer .button--close rect {
+          stroke: #0dfa21; }
+  .container .footer--container {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background: #6200EE; }
+    .container .footer--container .footer--container__small {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 90%;
+      height: 100%;
+      margin: 0 auto; }
+      .container .footer--container .footer--container__small p {
+        color: #f0e7e7; }
+      .container .footer--container .footer--container__small a {
+        color: #f0e7e7;
+        text-decoration: none; }
+
+@keyframes gradient {
   0% {
-    color: black; }
-  20% {
-    color: blue; }
-  40% {
-    color: red; }
-  60% {
-    color: green; }
-  80% {
-    color: burlywood; }
+    background-position: 0 50%; }
+  50% {
+    background-position: 100% 50%; }
   100% {
-    color: black; } }
+    background-position: 0 50%; } }
