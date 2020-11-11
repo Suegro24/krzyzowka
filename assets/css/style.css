@@ -51,6 +51,9 @@ body {
   background-size: 200%, 200%;
   animation: gradient 10s ease infinite;
   overflow-x: hidden; }
+  @media (max-width: 500px) {
+    .container {
+      overflow-x: auto; } }
   .container .header--container {
     position: fixed;
     top: 0;
@@ -89,6 +92,10 @@ body {
         .container .instruction--container .information {
           top: 65%;
           margin-bottom: 200px; } }
+      @media (max-width: 400px) {
+        .container .instruction--container .information {
+          top: 85%;
+          width: 80%; } }
       .container .instruction--container .information .instruction--text {
         font-size: 1.4rem;
         margin-top: 20px;
@@ -135,15 +142,20 @@ body {
           border: 2px solid black;
           border-radius: 4px;
           padding: 0;
-          margin: 0 1px; }
+          margin: 0 1px;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
           @media (max-width: 880px) {
             .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
               width: 20px;
-              height: 20px; } }
+              height: 20px;
+              font-size: 1.4rem; } }
           @media (max-width: 550px) {
             .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
               width: 15px;
-              height: 15px; } }
+              height: 15px;
+              font-size: .75rem; } }
         .container .crossword--container .crossword .answer .index {
           position: absolute;
           left: -25px;
