@@ -98,6 +98,7 @@ body {
           margin-bottom: 200px; } }
       @media (max-width: 400px) {
         .container .instruction--container .information {
+          top: 400px;
           width: 80%; } }
       .container .instruction--container .information .instruction--text {
         font-size: 1.4rem;
