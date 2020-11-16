@@ -84,8 +84,9 @@ body {
     
         .logo-image {
             position: absolute;
-            right: 10px;
+            left: 50%;
             top: 10px;
+            transform: translateX(-50%);
             height: 100%;
             background: #e6e3e3;
             padding: 10px;
@@ -93,7 +94,7 @@ body {
             border-radius: 5px;
 
             @media (max-width: 768px) {
-                transform: scale(0.70);
+                transform: translateX(-50%) scale(0.70);
             }
         }
     }
@@ -119,12 +120,11 @@ body {
             z-index: 2;
 
             @media (max-width: 700px) {
-                top: 65%;
+                top: 450px;
                 margin-bottom: 200px;
             }
 
             @media (max-width: 400px) {
-                top: 85%;
                 width: 80%;
             }
 
