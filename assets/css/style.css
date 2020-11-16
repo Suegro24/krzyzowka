@@ -70,6 +70,9 @@ body {
       padding: 10px;
       border: 3px solid black;
       border-radius: 5px; }
+      @media (max-width: 768px) {
+        .container .header--container .logo-image {
+          transform: scale(0.7); } }
   .container .instruction--container {
     position: relative;
     width: 100vw;
