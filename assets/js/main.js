@@ -47,7 +47,7 @@ const passwords = [
             },
             {
                 question: 'Nazwa radia w którym można słuchać audycji NZS UR',
-                hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/2804590669610719',
+                hint: 'https://www.facebook.com/Feniks.fm',
                 answer: 'Feniks',
                 mainLetter: 'i'
             },
@@ -233,6 +233,12 @@ function prepareQuestions(password) {
 
     questionsContent += `
         </ol>
+        <button id="buttonFinish" class="btn button--finish">
+            <svg>
+                <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+            </svg>
+            Sprawdź
+        </button>
     `
     questions.innerHTML = questionsContent;
 }
