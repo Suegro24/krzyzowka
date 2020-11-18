@@ -1,5 +1,4 @@
 const continueButton = document.querySelector('#continueButton');
-const finishButton = document.querySelector('#buttonFinish');
 const crossword = document.querySelector('#crossword');
 const questions = document.querySelector('#questions');
 const modal = document.querySelector('#crosswordCompletedModal');
@@ -77,7 +76,9 @@ const passwords = [
     }
 ]
 
-continueButton.addEventListener('click', () => {
+continueButton.addEventListener('click', changeStage, false);
+
+function changeStage() {
     const instructionSection = document.querySelector('#firstSection');
     const crosswordSection = document.querySelector('#secondSection');
 
@@ -90,17 +91,18 @@ continueButton.addEventListener('click', () => {
         crosswordSection.style.opacity = '1';
         newGame();
     },2000)
-})
-
-finishButton.addEventListener('click', () => {
-    checkFinish();
-})
+}
 
 function newGame() {
     choosenPassword = 0;
     prepareCrossword(choosenPassword);
     prepareQuestions(choosenPassword);
     prepereCompleteModal(choosenPassword);
+    const finishButton = document.querySelector('#buttonFinish');
+
+    finishButton.addEventListener('click', () => {
+        checkFinish();
+    })
 }
 
 function checkFinish() {
@@ -122,6 +124,7 @@ function prepareCrossword(password) {
     let crosswordContent = '';
     let positionOfFirstAnswerMainLetter;
     let index = 0;
+    let minMarginLeft;
     for (let answer of passwords[password].questions) {
         crosswordContent =
         `
@@ -166,11 +169,21 @@ function prepareCrossword(password) {
         ` 
 
         crossword.innerHTML += crosswordContent;
+        
         let marginLeft = calculatePosition(positionOfFirstAnswerMainLetter, mainCharacterPosition);
+        if (index == 0) {
+            minMarginLeft = marginLeft;
+        }
+        else {
+            if (minMarginLeft > marginLeft) minMarginLeft = marginLeft;
+        }
+
         let div = crossword.querySelector(`.answer${index}`);
         div.style.marginLeft = marginLeft+'px';
         index++;
     }
+
+    crossword.style.left = `${Math.abs(minMarginLeft) + 20}px`;
 
     let answersIndex = crossword.querySelectorAll('.index');
     answersIndex.forEach(index => {
@@ -277,7 +290,18 @@ function prepereCompleteModal(password) {
 }
 
 function calculatePosition(positionA, positionB) {  
-    const inputWidth = 36;
+    let windowWidth = window.innerWidth;
+    let inputWidth;
+    if (windowWidth < 550) {
+        inputWidth = 21;
+    }
+    else if (windowWidth < 880) {
+        inputWidth = 26;
+    }
+    else {
+        inputWidth = 36;
+    }
+    
     let diffrence = positionA - positionB;
     let result = diffrence * inputWidth;
     return result;

@@ -65,7 +65,7 @@ body {
     }
 
 .container {
-    background: linear-gradient(-45deg, $primary, $primary-accent);
+    background: black;
     background-size: 200%, 200%;
     animation: gradient 10s ease infinite;
     overflow-x: hidden;
@@ -129,10 +129,19 @@ body {
                 width: 80%;
             }
 
+            @media (max-width: 360px) {
+                top: 450px;
+            }
+
             .instruction--text {
                 font-size: 1.4rem;
-                margin-top: 20px;
+                margin-top: 10px;
                 margin-bottom: 20px;
+            }
+
+            .instruction--text__footer {
+                margin: 10px 0 20px 0;
+                font-size: 1.4rem;
             }
     
             .button--continue {
@@ -157,30 +166,20 @@ body {
         opacity: 0; // 0
         display: none; // none
         transition: opacity 1s;
+        margin-right: 20px;
         flex-direction: column;
         align-items: center;
+        overflow-x: auto;
     
         .crossword {
-            padding: 200px;
+            position: relative;
+            top: 200px;
 
-            @media (max-width: 1200px) {
-                padding: 200px 0;
-                margin: 0 auto;
-            }
-
-            @media (max-width: 510px) {
-                position: relative;
-                left: 40px;
-            }
     
             .answer {
                 position: relative;
                 display: flex;
                 margin: 1px;
-
-                @media (max-width: 980px) {
-                    margin: 0 !important;
-                }
     
                 .letter {
                     width: 30px;
@@ -238,6 +237,7 @@ body {
     
     .questions--container {
         position: relative;
+        top: 300px;
         margin: 0 0 60px 0;
         background: $gray;
         padding: 20px;
@@ -257,6 +257,7 @@ body {
             top: 0;
             color: blue;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .button--finish {
@@ -354,7 +355,7 @@ body {
         bottom: 0;
         left: 0;
         z-index: 2;
-        background: $primary;
+        background: $gray;
     
         .footer--container__small {
             display: flex;
@@ -365,11 +366,11 @@ body {
             margin: 0 auto;
             
             p {
-                color: #f0e7e7;
+                color: black;
             }
 
             a {
-                color: #f0e7e7;
+                color: black;
                 text-decoration: none;
             }
         }
