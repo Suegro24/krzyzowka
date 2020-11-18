@@ -9,61 +9,61 @@ const passwords = [
         password: 'Wampiriada',
         questions: [
             {
-                question: 'Projekt Niezależnego Zrzeszenia Studentów pomagający w kształtowaniu przyszłości studentów',
+                question: 'Projekt Niezależnego Zrzeszenia Studentów pomagający w kształtowaniu przyszłej kariery zawodowej studentów.',
                 hint: 'https://www.facebook.com/DK.Kraj',
                 answer: 'Drogowskazy kariery',
                 mainLetter: 'w'
             },
             {
-                question: 'Imię przewodniczącego/przewodniczącej Niezależnego Zrzeszenia Studentów Uniwersytetu Rzeszowskiego',
+                question: 'Imię przewodniczącego/przewodniczącej Niezależnego Zrzeszenia Studentów Uniwersytetu Rzeszowskiego.',
                 hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/3038036589599458',
                 answer: 'Ewelina',
                 mainLetter: 'a'
             },
             {
-                question: 'Osoba, która nie została jeszcze członkiem, ale pomaga organizacji i chcę się do niej przyłączyć',
+                question: 'Osoba, która nie została jeszcze członkiem, ale pomaga organizacji,  chcę działać i dołączyć do niej.',
                 hint: 'http://nzs.org.pl/kim-jestesmy/',
                 answer: 'Sympatyk',
                 mainLetter: 'm'
             },
             {
-                question: 'Wiceprzewodniczący ds. ... - odpowiada m. in. za promowanie wydarzeń oraz przygotowanie oprawy wizualnej',
+                question: 'Wiceprzewodniczący ds. ... - odpowiada m.in. za promowanie wydarzeń oraz przygotowanie oprawy wizualnej.',
                 hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/3038036589599458',
                 answer: 'Promocji',
                 mainLetter: 'p'
             },
             {
-                question: 'Nazwa domu studenta w którym siedzibę ma NZS UR',
+                question: 'Nazwa domu studenta w którym siedzibę ma NZS UR.',
                 hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/about/?ref=page_internal',
                 answer: 'Hilton',
                 mainLetter: 'i'
             },
             {
-                question: 'Wydarzenie NZS UR, w którym można posłuchać rozmowy z ciekawymi osobami zza granicy',
+                question: 'Projekt NZS UR, w którym można posłuchać rozmów z ciekawymi osobami zza granicy.',
                 hint: 'https://www.facebook.com/hashtag/nzsbezgranic',
                 answer: 'NZS bez granic',
                 mainLetter: 'r'
             },
             {
-                question: 'Nazwa radia w którym można słuchać audycji NZS UR',
+                question: 'Nazwa radia w którym można słuchać audycji NZS UR.',
                 hint: 'https://www.facebook.com/Feniks.fm',
                 answer: 'Feniks',
                 mainLetter: 'i'
             },
             {
-                question: 'Nazwisko obecnego przewodniczącego/przewodniczącej ogólnokrajowego Niezależnego Zrzeszenia Studentów',
+                question: 'Nazwisko obecnego przewodniczącego/przewodniczącej ogólnokrajowego Niezależnego Zrzeszenia Studentów.',
                 hint: 'http://nzs.org.pl/zarzad-krajowy/',
                 answer: 'Białas',
                 mainLetter: 'a'
             },
             {
-                question: 'Akcja Niezależnego Zrzeszenia Studentów, którego celem jest wyróżnienie studentów o wybitnych osiągnięciach',
+                question: 'Projekt Niezależnego Zrzeszenia Studentów, którego celem jest wyróżnienie studentów o wybitnych osiągnięciach.',
                 hint: 'http://nzs.org.pl/studencki-nobel/',
                 answer: 'Studencki Nobel',
                 mainLetter: 'd'
             },
             {
-                question: 'Były członek organizacji',
+                question: 'Były członek organizacji.',
                 hint: 'https://www.facebook.com/nzsuniwersyteturzeszowskiego/posts/2792610390808747',
                 answer: 'Alumn',
                 mainLetter: 'a'
@@ -183,7 +183,10 @@ function prepareCrossword(password) {
         index++;
     }
 
-    crossword.style.left = `${Math.abs(minMarginLeft) + 40}px`;
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 500) {
+        crossword.style.left = `${Math.abs(minMarginLeft) + 40}px`;
+    }
 
     let answersIndex = crossword.querySelectorAll('.index');
     answersIndex.forEach(index => {
@@ -261,7 +264,7 @@ function prepereCompleteModal(password) {
     let modalContent = '';
     modalContent = `
         <div class="modal-header">
-            <p class="modal-title">Gratulację udało Ci się odgadnąć hasło!</p>
+            <p class="modal-title">Gratulację! Już znasz hasło!</p>
             <p class="modal-title-password">${crosswordChoosenPassword.password} </p>
         </div>
         <div class="modal-content">

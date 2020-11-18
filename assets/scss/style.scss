@@ -173,7 +173,12 @@ body {
         .crossword {
             position: relative;
             top: 200px;
+            left: 50%;
+            transform: translateX(-25%);
 
+            @media (max-width: 500px) {
+                transform: none;
+            }
     
             .answer {
                 position: relative;
@@ -237,12 +242,20 @@ body {
     .questions--container {
         position: sticky;
         left: 0;
-        margin: 300px 0 60px 0;
+        margin: 300px auto 60px auto;
+        width: 50%;
+        min-width: 800px;
         background: $gray;
         padding: 20px;
         -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
         box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
         border-radius: 3px;
+
+        @media (max-width: 850px) {
+            min-width: unset;
+            width: 90%;
+            overflow: hidden;
+        }
 
         ol {
             li {
