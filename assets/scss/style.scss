@@ -168,12 +168,7 @@ body {
         transition: opacity 1s;
         margin-right: 20px;
         flex-direction: column;
-        align-items: center;
         overflow-x: auto;
-
-        @media (max-width: 550px) {
-            align-items: flex-end;
-        }
     
         .crossword {
             position: relative;
@@ -240,9 +235,9 @@ body {
     }
     
     .questions--container {
-        position: relative;
-        top: 300px;
-        margin: 0 0 60px 0;
+        position: sticky;
+        left: 0;
+        margin: 300px 0 60px 0;
         background: $gray;
         padding: 20px;
         -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 

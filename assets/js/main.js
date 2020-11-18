@@ -85,7 +85,7 @@ function changeStage() {
     instructionSection.style.opacity = '0';
     setTimeout(() => {
         instructionSection.style.display = 'none';
-        crosswordSection.style.display = 'flex';
+        crosswordSection.style.display = 'block';
     },1000)
     setTimeout(() => {
         crosswordSection.style.opacity = '1';
@@ -183,7 +183,7 @@ function prepareCrossword(password) {
         index++;
     }
 
-    crossword.style.left = `${Math.abs(minMarginLeft)}px`;
+    crossword.style.left = `${Math.abs(minMarginLeft) + 40}px`;
 
     let answersIndex = crossword.querySelectorAll('.index');
     answersIndex.forEach(index => {
