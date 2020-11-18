@@ -183,7 +183,7 @@ function prepareCrossword(password) {
         index++;
     }
 
-    crossword.style.left = `${Math.abs(minMarginLeft) + 20}px`;
+    crossword.style.left = `${Math.abs(minMarginLeft)}px`;
 
     let answersIndex = crossword.querySelectorAll('.index');
     answersIndex.forEach(index => {
