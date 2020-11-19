@@ -195,8 +195,7 @@ body {
     @media (max-width: 850px) {
       .container .questions--container {
         min-width: unset;
-        width: 90%;
-        overflow: hidden; } }
+        width: 90%; } }
     .container .questions--container ol li {
       position: relative; }
     .container .questions--container .hint {
