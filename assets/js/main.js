@@ -101,22 +101,46 @@ function newGame() {
     const finishButton = document.querySelector('#buttonFinish');
 
     finishButton.addEventListener('click', () => {
-        checkFinish();
+        checkFinish(choosenPassword);
     })
 }
 
-function checkFinish() {
-    const mainLetters = crossword.querySelectorAll('.main-letter');
-    let result = '';
-    mainLetters.forEach(letter => {
-        result+=letter.value.toLowerCase();
+function checkFinish(password) {
+    const answers = crossword.querySelectorAll('.answer');
+    const amountOfQuestions = passwords[password].questions.length;
+    let amountOfGoodAnswers = 0;
+    answers.forEach((answer,index) => {
+        const letters = answer.querySelectorAll('.letter');
+        const questionAnswer = passwords[password].questions[index].answer;
+        let userAnswer = '';
+        letters.forEach(letter => {
+            userAnswer += letter.value;
+            if (letter.classList.contains('space')) userAnswer+= ' '; 
+        })
+
+        if (userAnswer.toLowerCase() == questionAnswer.toLowerCase()) {
+            letters.forEach(letter => {
+                if (!letter.classList.contains('space')) {
+                    letter.classList.add('good-letter');
+                    letter.classList.remove('bad-letter');
+                }
+            })
+            amountOfGoodAnswers++;
+        }
+        else {
+            letters.forEach(letter => {
+                if (!letter.classList.contains('space')) {
+                    letter.classList.add('bad-letter')
+                    letter.classList.remove('good-letter');
+                }
+            })
+        }
     })
 
-    if (passwords[choosenPassword].password.toLowerCase() === result) {
-        modal.style.display="block"
-    }
-    else {
-        alert('Próbuj dalej!');
+    console.log(amountOfGoodAnswers);
+
+    if (amountOfGoodAnswers == amountOfQuestions) {
+        modal.style.display = 'block';
     }
 }
 
@@ -152,7 +176,7 @@ function prepareCrossword(password) {
             else if (letter === ' ') {
                 crosswordContent += 
                 `
-                    <input class="space" type="text" maxlength="0" disabled>
+                    <input class="space letter" type="text" maxlength="0" disabled>
                 `
             }
             else {
@@ -295,11 +319,11 @@ function prepereCompleteModal(password) {
 function calculatePosition(positionA, positionB) {  
     let windowWidth = window.innerWidth;
     let inputWidth;
-    if (windowWidth < 550) {
-        inputWidth = 21;
+    if (windowWidth <= 550) {
+        inputWidth = 17;
     }
-    else if (windowWidth < 880) {
-        inputWidth = 26;
+    else if (windowWidth <= 880) {
+        inputWidth = 22;
     }
     else {
         inputWidth = 36;

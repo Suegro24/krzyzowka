@@ -144,9 +144,10 @@ body {
         display: flex;
         margin: 1px; }
         .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
-          width: 30px;
-          height: 30px;
-          font-size: 2rem;
+          box-sizing: border-box;
+          width: 34px;
+          height: 34px;
+          font-size: 1.8rem;
           text-align: center;
           text-transform: uppercase;
           border: 2px solid black;
@@ -160,7 +161,7 @@ body {
             .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
               width: 20px;
               height: 20px;
-              font-size: 1.4rem; } }
+              font-size: 1.1rem; } }
           @media (max-width: 550px) {
             .container .crossword--container .crossword .answer .letter, .container .crossword--container .crossword .answer .main-letter, .container .crossword--container .crossword .answer .space {
               width: 15px;
@@ -179,6 +180,10 @@ body {
               left: -25px !important; } }
         .container .crossword--container .crossword .answer .main-letter {
           border: 3px solid red; }
+        .container .crossword--container .crossword .answer .good-letter {
+          background: green; }
+        .container .crossword--container .crossword .answer .bad-letter {
+          background: #f14c4c; }
         .container .crossword--container .crossword .answer .space {
           background: gray; }
   .container .questions--container {
