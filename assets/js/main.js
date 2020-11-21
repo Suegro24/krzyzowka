@@ -292,7 +292,7 @@ function prepereCompleteModal(password) {
     let modalContent = '';
     modalContent = `
         <div class="modal-header">
-            <p class="modal-title">Gratulację! Już znasz hasło!</p>
+            <p class="modal-title">Gratulacje! Już znasz hasło!</p>
             <p class="modal-title-password">${crosswordChoosenPassword.password} </p>
         </div>
         <div class="modal-content">
