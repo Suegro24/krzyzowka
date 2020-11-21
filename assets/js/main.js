@@ -225,7 +225,7 @@ function prepareCrossword(password) {
     const letters = crossword.querySelectorAll('.letter');
     letters.forEach(letter => {
         letter.addEventListener('input', (e) => {
-            if (e.target.value.length === 1) {
+            if (e.target.value.length >= 1) {
                 let next = e.target;
                 while (next = next.nextElementSibling) {
                     if (next == null) {
@@ -236,6 +236,22 @@ function prepareCrossword(password) {
                             continue;
                         }
                         next.focus();
+                        break;
+                    }
+                }
+            }
+            else if (e.target.value.length === 0) {
+                let previous = e.target;
+                while (previous = previous.previousElementSibling) {
+                    if (previous == null) {
+                        break;
+                    }
+                    if (previous.tagName.toLowerCase() === 'input') {
+                        if (previous.disabled === true) {
+                            continue;
+                        }
+                        previous.focus();
+                        previous.select();
                         break;
                     }
                 }
