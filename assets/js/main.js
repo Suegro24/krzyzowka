@@ -225,7 +225,10 @@ function prepareCrossword(password) {
     const letters = crossword.querySelectorAll('.letter');
     letters.forEach(letter => {
         letter.addEventListener('input', (e) => {
-            if (e.target.value.length >= 1) {
+            if (e.target.value.length > 1) {
+                e.target.value.slice(0, 1);
+            }
+            else if (e.target.value.length === 1) {
                 let next = e.target;
                 while (next = next.nextElementSibling) {
                     if (next == null) {
