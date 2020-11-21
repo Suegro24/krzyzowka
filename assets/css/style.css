@@ -180,6 +180,9 @@ body {
               left: -25px !important; } }
         .container .crossword--container .crossword .answer .main-letter {
           border: 3px solid red; }
+          @media (max-width: 500px) {
+            .container .crossword--container .crossword .answer .main-letter {
+              border: 2px solid red; } }
         .container .crossword--container .crossword .answer .good-letter {
           background: green; }
         .container .crossword--container .crossword .answer .bad-letter {

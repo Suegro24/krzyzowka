@@ -240,21 +240,6 @@ function prepareCrossword(password) {
                     }
                 }
             }
-            else if (e.target.value.length === 0) {
-                let previous = e.target;
-                while (previous = previous.previousElementSibling) {
-                    if (previous == null) {
-                        break;
-                    }
-                    if (previous.tagName.toLowerCase() === 'input') {
-                        if (previous.disabled === true) {
-                            continue;
-                        }
-                        previous.focus();
-                        break;
-                    }
-                }
-            }
         })
     })
 }

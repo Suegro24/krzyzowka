@@ -230,6 +230,10 @@ body {
                 .main-letter {
                     @extend .letter;
                     border: 3px solid red;
+
+                    @media (max-width: 500px) {
+                        border: 2px solid red;
+                    }
                 }
 
                 .good-letter {
